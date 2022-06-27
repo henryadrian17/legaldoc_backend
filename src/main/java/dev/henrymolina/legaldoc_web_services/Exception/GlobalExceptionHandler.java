@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.StreamSupport;
@@ -27,6 +29,8 @@ public class GlobalExceptionHandler {
     @Value("${error.422.message}")
     private String error422Message;
 
+    @Value("${error.500.message}")
+    private String error500Message;
     /**
      * Constraint violation exception handler
      *
@@ -91,6 +95,12 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
+    /**
+     * Build list of ValidationError from List<FieldError> fieldErrors
+     *
+     * @param fieldErrors List<FieldError> fieldErrors - List
+     * @return List<ValidationError> - list of validation errors
+     */
     private List<ValidationError> buildValidationErrors(
             List<FieldError> fieldErrors) {
         return fieldErrors.
@@ -105,6 +115,41 @@ public class GlobalExceptionHandler {
                 collect(toList());
     }
 
+    /**
+     * Method Argument Not Valid Exception handler
+     *
+     * @param ex MethodArgumentNotValidException
+     * @return List<ValidationError> - list of ValidationError built
+     * from set of ConstraintViolation
+     */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+    public StandardServiceResponse handleSQLIntegrityConstraintViolationException(SQLIntegrityConstraintViolationException ex) {
+        return StandardServiceResponse.builder()
+                .serviceStatus(ServiceStatus.builder()
+                        .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                        .message(error500Message)
+                        .build())
+                .data(buildValidationErrors(ex.getMessage()))
+                .build();
+    }
+    /**
+     * Build list of ValidationError from String message
+     *
+     * @param message String message - String
+     * @return List<ValidationError> - list of validation errors
+     */
+
+    private List<ValidationError> buildValidationErrors(String message) {
+        if (message.contains("Duplicate entry")) {
+            return Arrays.asList(ValidationError.builder()
+                    .field(message.split("Duplicate entry")[1].split("for key")[0].trim())
+                    .error("Duplicate entry")
+                    .build());
+        } else {
+            return null;
+        }
+    }
 
 
 }

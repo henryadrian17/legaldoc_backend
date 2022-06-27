@@ -3,8 +3,7 @@ package dev.henrymolina.legaldoc_web_services.services.login.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import java.time.Instant;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Entity
@@ -27,14 +26,13 @@ public class User {
     private String nombre;
 
     @Column(name = "create_at")
-    private Instant fechaCreacion = Instant.now();
+    private Timestamp fechaCreacion;
 
-    @Column(name = "email", nullable = false, unique = true)
-    @Email(message = "El email no es valido")
+    @Column(name = "email", nullable = false)
     private String correo;
 
     @Column(name = "enabled")
-    private Boolean habilitado = true;
+    private Boolean habilitado;
 
     @Column(name = "bith", nullable = false)
     private LocalDate fechaNacimiento;
@@ -42,8 +40,12 @@ public class User {
     @Column(name = "password", nullable = false)
     private String contrasena;
 
+    @Column(name = "salt", nullable = false)
+    private String salt;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_type")
     private UserType userType;
+
 
 }

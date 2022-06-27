@@ -10,19 +10,27 @@ import java.time.LocalDate;
 
 @Data
 public class UserDto implements Serializable {
-    @NotNull(message = "El campo apellido no puede ser nulo")
-    @NotEmpty(message = "El campo apellido no puede ser vacio")
-    private final String apellido;
     @NotNull(message = "El campo nombre no puede ser nulo")
     @NotEmpty(message = "El campo nombre no puede ser vacio")
     private final String nombre;
-    @Email(message = "El email no es valido")
-    @NotNull(message = "El campo email no puede ser nulo")
-    @NotEmpty(message = "El campo email no puede ser vacio")
+
+    @NotNull(message = "El campo apellido no puede ser nulo")
+    @NotEmpty(message = "El campo apellido no puede ser vacio")
+    private final String apellido;
+
+    @Email(message = "El correo no es valido")
+    @NotNull(message = "El campo correo no puede ser nulo")
+    @NotEmpty(message = "El campo correo no puede ser vacio")
     private final String correo;
+
     @NotNull(message = "La fecha de cumpleaños no puede ser nulo")
     private final LocalDate fechaNacimiento;
-    @NotNull(message = "El password no puede ser nulo")
-    @NotEmpty(message = "El password no puede ser vacio")
+
+    @NotNull(message = "La contraseña no puede ser nula")
+    @NotEmpty(message = "La contraseña no puede estar vacia")
     private final String contrasena;
+
+    @NotEmpty(message = "El campo de confirmacionde contraseña no puede ser vacio")
+    @NotNull(message = "El campo de confirmacionde contraseña no puede ser nulo")
+    private String contrasenaConfirmacion;
 }
