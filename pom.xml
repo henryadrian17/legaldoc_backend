@@ -11,7 +11,7 @@
     <groupId>dev.henrymolina</groupId>
     <artifactId>legaldoc_web_services</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>legaldoc_web_services</name>
     <description>legaldoc_web_services</description>
     <properties>

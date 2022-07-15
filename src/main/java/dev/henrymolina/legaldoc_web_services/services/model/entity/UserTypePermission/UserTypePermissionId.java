@@ -1,4 +1,4 @@
-package dev.henrymolina.legaldoc_web_services.services.login.model.entity.userTypePermission;
+package dev.henrymolina.legaldoc_web_services.services.model.entity.UserTypePermission;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,6 @@
 package dev.henrymolina.legaldoc_web_services.services.utils.dtos;
 
 import lombok.*;
-import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
@@ -11,4 +10,5 @@ import org.springframework.http.HttpStatus;
 public class ServiceStatus {
     private Integer status;
     private String message;
+
 }

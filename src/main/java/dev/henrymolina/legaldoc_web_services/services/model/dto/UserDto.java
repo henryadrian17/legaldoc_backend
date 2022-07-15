@@ -1,4 +1,4 @@
-package dev.henrymolina.legaldoc_web_services.services.login.model.dto;
+package dev.henrymolina.legaldoc_web_services.services.model.dto;
 
 import lombok.Data;
 

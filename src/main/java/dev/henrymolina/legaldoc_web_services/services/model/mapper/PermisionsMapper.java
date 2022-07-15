@@ -1,7 +1,7 @@
-package dev.henrymolina.legaldoc_web_services.services.login.model.mapper;
+package dev.henrymolina.legaldoc_web_services.services.model.mapper;
 
-import dev.henrymolina.legaldoc_web_services.services.login.model.entity.Permisions;
-import dev.henrymolina.legaldoc_web_services.services.login.model.entity.PermisionsDto;
+import dev.henrymolina.legaldoc_web_services.services.model.dto.PermisionsDto;
+import dev.henrymolina.legaldoc_web_services.services.model.entity.Permisions;
 import org.mapstruct.*;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package dev.henrymolina.legaldoc_web_services.services.login.model.entity;
+package dev.henrymolina.legaldoc_web_services.services.model.entity;
 
 import lombok.*;
 
@@ -27,7 +27,7 @@ public class Permisions {
     @Column(name = "create_at")
     private Timestamp fechaCreacion = new Timestamp(System.currentTimeMillis());
 
-    @Column(name = "enabled")
+    @Column(name = "enabled", columnDefinition = "boolean default true")
     private Boolean habilitado = true;
 
 }

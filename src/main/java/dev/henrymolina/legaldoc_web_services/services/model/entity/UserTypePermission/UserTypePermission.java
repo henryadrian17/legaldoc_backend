@@ -1,7 +1,7 @@
-package dev.henrymolina.legaldoc_web_services.services.login.model.entity.userTypePermission;
+package dev.henrymolina.legaldoc_web_services.services.model.entity.UserTypePermission;
 
-import dev.henrymolina.legaldoc_web_services.services.login.model.entity.Permisions;
-import dev.henrymolina.legaldoc_web_services.services.login.model.entity.UserType;
+import dev.henrymolina.legaldoc_web_services.services.model.entity.Permisions;
+import dev.henrymolina.legaldoc_web_services.services.model.entity.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +27,7 @@ public class UserTypePermission {
     @JoinColumn(name = "id_user_type", nullable = false)
     private UserType idTipoUsuario;
 
-    @Column(name = "enable")
+    @Column(name = "enable", columnDefinition = "boolean default true")
     private Boolean habilitado = true;
 
 }
